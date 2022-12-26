@@ -7,40 +7,6 @@ namespace CatWorx.BadgeMaker
 {
   class Program
   {
-    // Update the method return type
-    static List<Employee> GetEmployees()
-    {
-      // I will return a List of strings
-      List<Employee> employees = new List<Employee>();
-      // Collect user values until the value is an empty string
-      while (true)
-      {
-        // Move the initial prompt inside the loop, so it repeats for each employee
-        Console.WriteLine("Enter first name (leave empty to exit): ");
-        // Get a name from the console and assign it to a variable
-        // change input to firstName
-        string firstName = Console.ReadLine();
-        // Break if the user hits ENTER without typing a name
-        if (firstName == "")
-        {
-          break;
-        }
-        // add a Console.Readline() for each value
-        Console.Write("Enter last name: ");
-        string lastName = Console.ReadLine();
-        Console.Write("Enter ID: ");
-        int id = Int32.Parse(Console.ReadLine());
-        Console.Write("Enter photo URL: ");
-        string photoUrl = Console.ReadLine();
-        // Create a new Employee instance
-        Employee currentEmployee = new Employee(firstName, lastName, id, photoUrl);
-        // Add currentEmployee, not a string
-        employees.Add(currentEmployee);
-      }
-      // This is important!
-      return employees;
-    }
-
     static void Main(string[] args) //Entry Point
     {
       // Console.WriteLine("Hello, World!");
@@ -118,7 +84,8 @@ namespace CatWorx.BadgeMaker
       // Console.WriteLine("My employees include {0}, {1}, {2}, {3}", employees[0], employees[1], employees[2], employees[3]);
 
       // This is our employee-getting code now
-      List<Employee> employees = GetEmployees();
+      // List<Employee> employees = PeopleFetcher.GetEmployees();
+      List<Employee> employees = PeopleFetcher.GetFromApi();
       Util.PrintEmployees(employees);
       Util.MakeCSV(employees);
       Util.MakeBadges(employees);
